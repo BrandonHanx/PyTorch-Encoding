@@ -93,7 +93,7 @@ class DistSyncBatchNorm(_BatchNorm):
         input_shape = x.size()
         x = x.view(input_shape[0], self.num_features, -1)
         #def forward(ctx, x, gamma, beta, running_mean, running_var, eps, momentum, training, process_group):
-        y = dist_syncbatchnorm(x, self.weight, self.bias, self.running_mean, self.running_var,
+        y, _, _ = dist_syncbatchnorm(x, self.weight, self.bias, self.running_mean, self.running_var,
                                self.eps, self.momentum, self.training, process_group)
 
         #_var = _exs - _ex ** 2
